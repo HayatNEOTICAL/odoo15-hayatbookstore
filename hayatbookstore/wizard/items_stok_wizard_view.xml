@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="items_stok_view_form_wizard" model="ir.ui.view">
+        <field name="name">Stok</field>
+        <field name="model">hayatbookstore.items_stok</field>
+        <field name="arch" type="xml">
+            <form string="Form Stok">
+                <group>
+                    <field name="items_id"/>
+                    <field name="jumlah"/>    
+                </group>
+                <footer>
+                    <button class="btn btn-warning" type="object" name="button_items_stok"  string="Input Items"/>
+                    <button string="Cancel" special="cancel" class="btn btn-danger"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- model.name action window -->
+    <record id="hayatbookstore_items_stok_wizard_action" model="ir.actions.act_window">
+        <field name="name">model.name.action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hayatbookstore.items_stok</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="items_stok_view_form_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="hayatbookstore_items_stok_wizard"
+        name="Input Stok"
+        action="hayatbookstore_items_stok_wizard_action"
+        parent="hayatbookstore_menu_root"
+        sequence="50"/>
+
+</odoo>

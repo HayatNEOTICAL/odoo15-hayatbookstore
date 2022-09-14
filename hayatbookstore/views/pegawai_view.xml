@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="hayatbookstore_pegawai_view_tree" model="ir.ui.view">
+        <field name="name">hayatbookstore_pegawai_view.tree</field>
+        <field name="model">hayatbookstore.pegawai</field>
+        <field name="arch" type="xml">
+            <tree string="Daftar Pegawai">
+                <field name="nama_pegawai"/>
+                <field name="tgl_lahir_pegawai"/>
+                <field name="alamat_pegawai"/>
+                <field name="jenis_kelamin_pegawai"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hayatbookstore_pegawai_view_form" model="ir.ui.view">
+        <field name="name">hayatbookstore_pegawai_view.form</field>
+        <field name="model">hayatbookstore.pegawai</field>
+        <field name="arch" type="xml">
+            <form string="Pegawai">
+                <sheet>
+                    <group name="nama" string="Nama">
+                        <field name="nama_pegawai" required="1"/>
+                        <field name="jenis_kelamin_pegawai" required="1"/>                                        
+                    </group>
+                    <group name="data" string="Data">  
+                        <field name="alamat_pegawai" required="1"/>
+                        <field name="tgl_lahir_pegawai" required="1"/>
+                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

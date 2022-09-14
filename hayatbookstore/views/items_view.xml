@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hayatbookstore_items_view_kanban" model="ir.ui.view">
+        <field name="name">Items</field>
+        <field name="model">hayatbookstore.items</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                       <t t-name="kanban-box">
+                       <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                           <field name="picture" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+
+                            <div class="oe_kanban_details">
+                               <div class="o_kanban_record_top">
+                                   <div class="o_kanban_record_headings">
+                                       <strong class="o_kanban_record_title">
+                                            <field name="name" string="Judul Buku" />
+                                       </strong>
+                                   </div>
+                               </div>
+                               <ul>
+                                   <li>
+                                   Penulis
+                                   <span style="display: inline-block;margin:left 16px;"></span>
+                                   :
+                                   <field name="penulis"></field>
+                                   </li>
+                                   <li>
+                                   Publisher
+                                   <span style="display: inline-block;margin:left 16px;"></span>
+                                   :
+                                   <field name="publisher"></field>
+                                   </li>
+                                   <li>
+                                   Jenis Buku
+                                   <span style="display: inline-block;margin:left 16px;"></span>
+                                   :
+                                   <field name="detail_items_id"></field>
+                                   </li>
+                                   <li>
+                                   Tanggal Terbit
+                                   <span style="display: inline-block;margin:left 16px;"></span>
+                                   :
+                                   <field name="tgl_terbit"></field>
+                                   </li>
+                                   <li>
+                                   Stok
+                                   <span style="display: inline-block;margin:left 16px;"></span>
+                                   :
+                                   <field name="stok"></field>
+                                   </li>
+                                   <li>
+                                   Mitra
+                                   <span style="display: inline-block;margin:left 16px;"></span>
+                                   :
+                                   <field name="mitra_id" widget="many2many_tags"></field>
+                                   </li>
+                                </ul>
+                           </div>
+                       </div>
+                       </t>
+                   </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- model.name tree view -->
+    <record id="hayatbookstore_items_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Items</field>
+        <field name="model">hayatbookstore.items</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="penulis"/>
+                <field name="publisher"/>
+                <field name="detail_items_id"/>
+                <field name="stok"/>
+                <field name="mitra_id" widget="many2many_tags"/>                               
+            </tree>
+        </field>
+    </record>
+    
+    <!-- model.name form view -->
+    <record id="hayatbookstore_items_view_form" model="ir.ui.view">
+        <field name="name">Items</field>
+        <field name="model">hayatbookstore.items</field>
+        <field name="arch" type="xml">
+            <form string="Items">
+                <sheet>
+                    <group>
+                          <field name="picture" widget="image" class="oe_left oe_avatar" options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;picture&quot;}"/>
+                    </group>
+                    <group name="identitas" string="Identitas">     
+                          <field name="name" required="1"/>                          
+                          <field name="penulis" required="1"/>
+                          <field name="publisher" required="1"/>
+                          <field name="tgl_terbit" required="1"/>
+                          <field name="detail_items_id" required="1"/>
+                    </group>
+                    <group name="detail" string="Detail">      
+                          <field name="stok" required="1"/>                          
+                          <field name="harga_jual" required="1"/>
+                          <field name="harga_beli" required="1"/>
+                    </group>
+                    <group name="mitra" string="Mitra">
+                        <field name="mitra_id">
+                        <tree>
+                            <field name="name"/>
+                            <field name="alamat"/>
+                            <field name="no_telp"/>
+                            <field name="items_id" widget="many2many_tags"/>
+                        </tree>
+                        </field>                 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hayatbookstore_items_action" model="ir.actions.act_window">
+        <field name="name">Daftar Buku</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hayatbookstore.items</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="hayatbookstore_items_menu_act" 
+              name="Daftar Buku" 
+              parent="hayatbookstore_items_menu_categ" 
+              action="hayatbookstore_items_action" 
+              sequence="10"/>
+
+</odoo>

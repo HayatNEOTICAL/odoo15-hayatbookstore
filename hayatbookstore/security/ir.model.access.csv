@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hayatbookstore_items,access.hayatbookstore.items,model_hayatbookstore_items,,1,1,1,1
+access_hayatbookstore.detail_items,hayatbookstore.detail_items,model_hayatbookstore_detail_items,,1,1,1,1
+access_hayatbookstore_pegawai,hayatbookstore.pegawai,model_hayatbookstore_pegawai,,1,1,1,1
+access_hayatbookstore_kasir,hayatbookstore.kasir,model_hayatbookstore_kasir,,1,1,1,1
+access_hayatbookstore_officeboy,hayatbookstore.officeboy,model_hayatbookstore_officeboy,,1,1,1,1
+ccess_hayatbookstore_mitra,hayatbookstore.mitra,model_hayatbookstore_mitra,,1,1,1,1
+access_hayatbookstore_penjualan,access.hayatbookstore.penjualan,model_hayatbookstore_penjualan,,1,1,1,1
+access_hayatbookstore_detailpenjualan,access.hayatbookstore.detailpenjualan,model_hayatbookstore_detailpenjualan,,1,1,1,1
+access_hayatbookstore_items_stok,access.hayatbookstore.stok_items,model_hayatbookstore_items_stok,,1,1,1,1

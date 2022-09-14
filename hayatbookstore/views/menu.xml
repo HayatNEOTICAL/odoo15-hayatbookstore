@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="hayatbookstore_menu_root" 
+              name="Hayat Book Store" 
+              sequence="10"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="hayatbookstore_items_menu_categ" 
+              name="Items" 
+              parent="hayatbookstore_menu_root" 
+              sequence="10"/>
+
+        <menuitem id="hayatbookstore_pegawai_menu_categ" 
+              name="Pegawai" 
+              parent="hayatbookstore_menu_root" 
+              sequence="20"/>
+
+        <menuitem id="hayatbookstore_transaksi_menu_categ" 
+              name="Transaksi" 
+              parent="hayatbookstore_menu_root" 
+              sequence="42"/>      
+    
+</odoo>

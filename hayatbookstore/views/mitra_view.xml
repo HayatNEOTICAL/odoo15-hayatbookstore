@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="hayatbookstore_mitra_view_kanban" model="ir.ui.view">
+        <field name="name">Mitra</field>
+        <field name="model">hayatbookstore.mitra</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                        <field name="picture_mitra" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+                        <div class="oe_kanban_details">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name" string="Mitra" />
+                                    </strong>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>
+                                Nama Perusahaan  
+                                <span style="display: inline-block;margin:left 16px;"></span>
+                                :
+                                <field name="name"></field>
+                                </li>
+                                <li>
+                                Alamat Perusahaan
+                                <span style="display: inline-block;margin:left 16px;"></span>
+                                :
+                                <field name="alamat"></field>
+                                </li>
+                                <li>
+                                no_telp          
+                                <span style="display: inline-block;margin:left 16px;"></span>
+                                :
+                                <field name="no_telp"></field>
+                                </li>
+                                <li>
+                                Items             
+                                <span style="display: inline-block;margin:left 16px;"></span>
+                                :
+                                <field name="items_id"></field>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>    
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- hayatbookstore.mitra tree view -->
+    <record id="hayatbookstore_mitra_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Mitra</field>
+        <field name="model">hayatbookstore.mitra</field>
+        <field name="arch" type="xml">
+            <tree>
+               <field name="name"/>
+               <field name="alamat"/>
+               <field name="no_telp"/>
+               <field name="items_id" widget="many2many_tags"/>                
+            </tree>
+        </field>
+    </record>
+
+    <!-- hayatbookstore.mitra form view -->
+    <record id="hayatbookstore_mitra_view_form" model="ir.ui.view">
+        <field name="name">Form Mitra</field>
+        <field name="model">hayatbookstore.mitra</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="picture_mitra" widget="image" class="oe_left oe_avatar" options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;picture_mitra&quot;}"/>
+                    </group>
+                    <group>
+                        <field name="name"  required="1"/>
+                        <field name="alamat"  required="1"/>
+                        <field name="no_telp"  required="1"/>                        
+                    </group>
+                    <group name="barang" string="Barang">
+                        <field name="items_id"  required="1"/>                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+   
+   <!-- hayatbookstore.mitra action window -->
+    <record id="hayatbookstore_mitra_action" model="ir.actions.act_window">
+        <field name="name">Daftar Mitra</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hayatbookstore.mitra</field>
+        <field name="view_mode">kanban,tree,form</field>
+        
+    </record>
+    
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="hayatbookstore_mitra_menu_act" 
+              name="Mitra" 
+              parent="hayatbookstore_menu_root" 
+              action="hayatbookstore_mitra_action" 
+              sequence="40"/> 
+</odoo>

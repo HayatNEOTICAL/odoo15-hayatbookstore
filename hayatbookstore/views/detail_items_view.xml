@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- model.name tree view -->
+    <record id="hayatbookstore_detail_items_view_tree" model="ir.ui.view">
+        <field name="name">hayatbookstore.detail_items.view.tree</field>
+        <field name="model">hayatbookstore.detail_items</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="kode_buku"/>
+                <field name="jml_item"/>
+                <field name="kode_rak"/>
+                <field name="daftar"/>                
+                
+            </tree>
+        </field>
+    </record>
+    
+    <record id="hayatbookstore_detail_items_view_form" model="ir.ui.view">
+        <field name="name">Detail Items</field>
+        <field name="model">hayatbookstore.detail_items</field>
+        <field name="arch" type="xml">
+            <form string="Daftar Items">
+                <sheet>
+                    <group name="detail" string="Detail Items">
+                        <field name="name" required="1"/>
+                        <field name="kode_buku" required="1"/>
+                        <field name="jml_item" required="1"/>
+                        <field name="kode_rak" required="1"/>
+                        <field name="items_ids" required="1"/>
+                    </group>                            
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- model.name action window -->
+    <record id="detail_items_action" model="ir.actions.act_window">
+        <field name="name">Daftar Kelompok Items</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hayatbookstore.detail_items</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="hayatbookstore_detail_items_menu_act"
+        name="Kelompok Buku"
+        action="detail_items_action"
+        parent="hayatbookstore_items_menu_categ"
+        sequence="20"/>
+
+</odoo>

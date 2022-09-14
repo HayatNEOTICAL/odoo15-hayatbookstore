@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="hayatbookstore_officeboy_view_kanban" model="ir.ui.view">
+        <field name="name">Office Boy</field>
+        <field name="model">hayatbookstore.officeboy</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                        <field name="picture_officeboy" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+
+                        <div class="oe_kanban_details">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name" string="Kasir" />
+                                    </strong>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>
+                                Nama
+                                <span style="display: inline-block;margin:left 16px;"></span>
+                                :
+                                <field name="nama_pegawai"></field>
+                                </li>
+                                <li>
+                                Tgl. Lahir
+                                <span style="display: inline-block;margin:left 16px;"></span>
+                                :
+                                <field name="tgl_lahir_pegawai"></field>
+                                </li>
+                                <li>
+                                Alamat
+                                <span style="display: inline-block;margin:left 16px;"></span>
+                                :
+                                <field name="alamat_pegawai"></field>
+                                </li>
+                                <li>
+                                Jenis Kelamin
+                                <span style="display: inline-block;margin:left 16px;"></span>
+                                :
+                                <field name="jenis_kelamin_pegawai"></field>
+                                </li>
+                                <li>
+                                ID Kasir
+                                <span style="display: inline-block;margin:left 16px;"></span>
+                                :
+                                <field name="id_officeboy"></field>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>    
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="hayatbookstore_officeboy_view_tree_inherit" model="ir.ui.view">
+        <field name="name">Daftar officeboy</field>
+        <field name="model">hayatbookstore.officeboy</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="hayatbookstore_pegawai_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tgl_lahir_pegawai']" position="after">
+                <field name="id_officeboy"/>              
+            </xpath>
+            
+        </field>
+    </record>
+
+    <!-- hayatbookstore.officeboy inherit form view -->
+    <record id="hayatbookstore_officeboy_view_form_inherit" model="ir.ui.view">
+        <field name="name">Form officeboy</field>
+        <field name="model">hayatbookstore.officeboy</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="hayatbookstore_pegawai_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet//group[2]" position="after">
+                <group name="id" string="ID">
+                    <field name="id_officeboy"  required="1"/>                    
+                </group>                
+            </xpath>
+            <xpath expr="//field[@name='alamat_pegawai']" position="attributes">
+                <attribute name="string">Alamat</attribute>                
+            </xpath>
+            <group>
+                <field name="picture_officeboy" widget="image" class="oe_left oe_avatar" options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;picture_officeboy&quot;}"/>
+            </group>
+        </field>
+    </record>
+
+    <!-- model.name action window -->
+    <record id="hayatbookstore_officeboy_action" model="ir.actions.act_window">
+        <field name="name">Office Boy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hayatbookstore.officeboy</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem
+        id="hayatbookstore_officeboy_menu_act"
+        name="Office Boy"
+        action="hayatbookstore_officeboy_action"
+        parent="hayatbookstore_pegawai_menu_categ"
+        sequence="20"/>
+
+</odoo>

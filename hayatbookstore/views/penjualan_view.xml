@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+        <!-- hayatbookstore.penjualan tree view -->
+    <record id="hayatbookstore_penjualan_view_tree" model="ir.ui.view">
+        <field name="name">List Penjualan</field>
+        <field name="model">hayatbookstore.penjualan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="nama_pembeli"/>
+                <field name="tgl_penjualan"/>
+                <field name="total_bayar"/>  
+                <field name="state" 
+                       decoration-danger="state == 'draft'"
+                       decoration-muted="state == 'cancelled'"
+                       decoration-info="state == 'confirm'"
+                       decoration-primary="state == 'done'"
+                       widget = "badge"/>               
+            </tree>
+        </field>
+    </record>
+
+    <!-- hayatbookstore.penjualan form view -->
+    <record id="hayatbookstore_penjualan_view_form" model="ir.ui.view">
+        <field name="name">Form Penjualan</field>
+        <field name="model">hayatbookstore.penjualan</field>
+        <field name="arch" type="xml">
+            <form string="Form Penjualan">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="btin btn-primary" states="draft"/>
+                    <button name="action_done" type="object" string="Done" class="btin btn-primary" states="confirm"/>
+                    <button name="action_cancelled" type="object" string="Cancelled" class="btin btn-warning" states="confirm" confirm="Apakah Anda Yakin?"/>
+                    <button name="action_draft" type="object" string="Kembali ke Draft" class="btin btn-danger" states="cancelled" confirm="Apakah Anda Yakin Ingin Mengedit Quotation Ini?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                </header>
+                <sheet>
+                    <group>
+                       <field name="name" attrs="{'readonly' : [('state','!=', 'draft')]}"  required="1"/>
+                       <field name="nama_pembeli" attrs="{'readonly' : [('state','!=', 'draft')]}"  required="1"/>
+                       <field name="tgl_penjualan" attrs="{'readonly' : [('state','!=', 'draft')]}"  required="1"/>
+                       <field name="total_bayar" readonly="1"  required="1"  />
+                                            
+                    </group>
+                    <group name="daftaritems" string="Daftar Items">
+                        <field name="detailpenjualan_ids" attrs="{'readonly' : [('state','!=', 'draft')]}" >
+                            <tree editable='bottom'>
+                                <field name="items_id"/>
+                                <field name="harga_satuan"/>
+                                <field name="qty"/>
+                                <field name="subtotal" sum="Total"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- hayatbookstore.penjualan action window -->
+    <record id="hayatbookstore_penjualan_action" model="ir.actions.act_window">
+        <field name="name">Penjualan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hayatbookstore.penjualan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="penjualan_view_menu_act" 
+              name="Penjualan" 
+              parent="hayatbookstore_transaksi_menu_categ" 
+              action="hayatbookstore_penjualan_action" 
+              sequence="10"/>
+</odoo>
